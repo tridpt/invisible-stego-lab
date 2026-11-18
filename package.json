@@ -1,0 +1,20 @@
+{
+  "name": "invisible-stego-lab",
+  "version": "1.0.0",
+  "description": "SpectraVeil Lab — Phòng Thí Nghiệm Giấu Tin Vô Hình: Mực Tàng Hình Zero-Width & Bẫy Rò Rỉ Canary, Vẽ Tranh Trong Sóng Âm Spectrogram .WAV, File Đa Nhân Cách Triple Polyglot (.PNG + .HTML + .ZIP) & Chụp X-Quang Pháp Y Số (Port 4165)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test_server.js"
+  },
+  "keywords": [
+    "steganography",
+    "zero-width-variation-selectors",
+    "audio-spectrogram-synthesizer",
+    "polyglot-png-html-zip",
+    "lsb-bitplane-xray",
+    "canary-leak-trap"
+  ],
+  "author": "AI_App Ecosystem",
+  "license": "MIT"
+}

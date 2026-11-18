@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SpectraVeil Lab — Phòng Thí Nghiệm Giấu Tin Vô Hình (Port 4165)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <!-- HEADER -->
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-icon" aria-hidden="true">
+          <svg width="30" height="30" viewBox="0 0 36 36" fill="none">
+            <rect x="3" y="3" width="30" height="30" rx="9" fill="rgba(16,185,129,0.12)" stroke="url(#svGrad)" stroke-width="1.6"/>
+            <path d="M8 18C11.5 11.5 24.5 11.5 28 18C24.5 24.5 11.5 24.5 8 18Z" stroke="#34D399" stroke-width="1.8" stroke-linejoin="round"/>
+            <circle cx="18" cy="18" r="3.5" fill="#22D3EE"/>
+            <path d="M6 9H11M25 9H30M6 27H11M25 27H30" stroke="#67E8F9" stroke-width="1.4" stroke-linecap="round"/>
+            <defs>
+              <linearGradient id="svGrad" x1="3" y1="3" x2="33" y2="33" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#10B981"/>
+                <stop offset="100%" stop-color="#06B6D4"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div>
+          <div class="eyebrow">STEGANOGRAPHY &amp; BINARY ILLUSION SUITE</div>
+          <h1>SpectraVeil Lab <span class="port-badge">Port 4165</span></h1>
+        </div>
+      </div>
+
+      <div class="header-pills">
+        <span class="pill emerald">Unicode VS-256 (8-bit/char)</span>
+        <span class="pill cyan">WAV Spectrogram Synth + FFT</span>
+        <span class="pill amber">Triple Polyglot (PNG·HTML·ZIP)</span>
+      </div>
+    </header>
+
+    <!-- STUDIO TABS -->
+    <nav class="studio-tabs" aria-label="Các Trạm Giấu Tin">
+      <button class="tab-btn active" data-tab="tab-zw">
+        <span class="tab-num">01</span>
+        <div>
+          <div class="tab-title">Văn Bản Tàng Hình &amp; Bẫy Rò Rỉ</div>
+          <div class="tab-sub">Zero-Width VS-256 · AES-256-GCM · Canary Trap</div>
+        </div>
+      </button>
+      <button class="tab-btn" data-tab="tab-audio">
+        <span class="tab-num">02</span>
+        <div>
+          <div class="tab-title">Vẽ Tranh Trong Sóng Âm</div>
+          <div class="tab-sub">Ảnh / Chữ / QR ➔ .WAV · Thác Phổ Realtime</div>
+        </div>
+      </button>
+      <button class="tab-btn" data-tab="tab-polyglot">
+        <span class="tab-num">03</span>
+        <div>
+          <div class="tab-title">File Đa Nhân Cách (Polyglot)</div>
+          <div class="tab-sub">1 File = .PNG + Két .HTML + Kho Nén .ZIP</div>
+        </div>
+      </button>
+      <button class="tab-btn" data-tab="tab-xray">
+        <span class="tab-num">04</span>
+        <div>
+          <div class="tab-title">Pixel LSB &amp; X-Quang Nhị Phân</div>
+          <div class="tab-sub">Cắt Lớp Bit 0..7 · Mổ Xẻ Cấu Trúc Byte</div>
+        </div>
+      </button>
+    </nav>
+
+    <!-- ================================================================== -->
+    <!-- TRẠM 01: ZERO-WIDTH UNICODE & CANARY LEAK TRAP                     -->
+    <!-- ================================================================== -->
+    <section id="tab-zw" class="studio-panel active">
+      <div class="studio-banner">
+        <div>
+          <h2>Trạm 01 — Mực Tàng Hình Unicode &amp; Bẫy Truy Vết Kẻ Làm Lộ Tin</h2>
+          <p>Nhúng cả đoạn mật khẩu, khóa cấu hình hoặc dấu vân tay người nhận vào giữa một câu chat hoàn toàn bình thường bằng <b>Unicode Variation Selectors (1 byte / ký tự vô hình)</b> kết hợp nén Deflate và mã hóa <b>AES-256-GCM</b>.</p>
+        </div>
+        <button id="btn-zw-quick-demo" class="btn-accent-outline">⚡ Demo 1-Chạm</button>
+      </div>
+
+      <div class="grid-two">
+        <!-- CỘT TRÁI: BỘ MÃ HÓA & BẪY CANARY -->
+        <div class="card">
+          <div class="submode-switch">
+            <button class="submode-btn active" data-zwmode="single">🕵️ Giấu Tin Vào Câu Chat</button>
+            <button class="submode-btn" data-zwmode="canary">🚨 Gài Bẫy Rò Rỉ Đa Người Nhận (Canary)</button>
+          </div>
+
+          <!-- Chế độ đơn -->
+          <div id="zw-single-pane">
+            <label class="field-label">Câu vỏ bọc hiển thị cho người thường đọc (Cover Text)</label>
+            <input id="zw-cover" type="text" class="input" value="Chiều nay uống cà phê nhé! Quán cũ lúc 5h nha." />
+
+            <label class="field-label">Nội dung bí mật muốn giấu bên trong (Secret Payload)</label>
+            <textarea id="zw-secret" rows="4" class="textarea mono">API_KEY=sk-live-9948a7f2c1e0
+SSH_HOST=10.42.88.19:2222
+PASSCODE=Spectra#4165!
+GHI_CHU=Đừng gửi qua kênh công khai</textarea>
+
+            <div class="row-2">
+              <div>
+                <label class="field-label">Bảng mã vô hình</label>
+                <select id="zw-alphabet" class="select">
+                  <option value="vs256">VS-256 Siêu Nén (8 bit / 1 ký tự ẩn)</option>
+                  <option value="zw4">Zero-Width BMP Cổ Điển (2 bit / ký tự ẩn)</option>
+                </select>
+              </div>
+              <div>
+                <label class="field-label">Mật khẩu khóa AES-256-GCM (Tùy chọn)</label>
+                <input id="zw-pass-enc" type="password" class="input" placeholder="Để trống nếu không khóa mật khẩu" />
+              </div>
+            </div>
+
+            <div class="btn-row">
+              <button id="btn-zw-encode" class="btn-primary">✨ Bơm Mực Tàng Hình Vào Câu Chat</button>
+            </div>
+
+            <div id="zw-enc-result" class="result-box hidden">
+              <div class="result-hdr">
+                <span class="badge-ok">ĐÃ NHÚNG THÀNH CÔNG</span>
+                <span id="zw-enc-stats" class="mono-dim"></span>
+              </div>
+              <div class="field-label" style="margin-top:8px;">Chuỗi kết quả (Nhìn y hệt câu bình thường — Hãy copy gửi Zalo/Messenger/Slack!):</div>
+              <textarea id="zw-output" rows="2" class="textarea copy-target" readonly></textarea>
+              <div class="btn-row compact">
+                <button id="btn-zw-copy" class="btn-secondary">📋 Copy Câu Này</button>
+                <button id="btn-zw-send-decoder" class="btn-ghost">🔍 Đưa Sang Kính Hiển Vi Giải Mã ➔</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Chế độ Canary Leak Trap -->
+          <div id="zw-canary-pane" class="hidden">
+            <label class="field-label">Nội dung Thông báo / Tài liệu Mật phát cho nội bộ</label>
+            <textarea id="canary-cover" rows="3" class="textarea">THÔNG BÁO MẬT: Đúng 00:00 ngày 25/11 chúng ta sẽ mở bán gói Enterprise AI với mức chiết khấu 40% cho 100 khách đầu tiên.</textarea>
+
+            <div class="row-2">
+              <div>
+                <label class="field-label">Danh sách người nhận (Mỗi dòng 1 người)</label>
+                <textarea id="canary-recipients" rows="4" class="textarea mono">Minh (Trưởng nhóm DevOps)
+Lan (Phòng Tài chính)
+Hùng (Đối tác Phân phối)
+Tuấn (Agency Marketing)</textarea>
+              </div>
+              <div>
+                <label class="field-label">Ghi chú hồ sơ bảo mật</label>
+                <input id="canary-note" type="text" class="input" value="Tài liệu Mật Cấp Độ 1 - Cấm phát tán" />
+                <label class="field-label" style="margin-top:10px;">Khóa mật khẩu truy vết (Tùy chọn)</label>
+                <input id="canary-pass" type="password" class="input" placeholder="Mật khẩu mở dấu vân tay" />
+              </div>
+            </div>
+
+            <div class="btn-row">
+              <button id="btn-canary-gen" class="btn-primary amber">🚨 Sinh Các Bản Sao Đánh Dấu Ngầm</button>
+            </div>
+
+            <div id="canary-list" class="canary-cards"></div>
+          </div>
+        </div>
+
+        <!-- CỘT PHẢI: KÍNH HIỂN VI KÝ TỰ MA & GIẢI MÃ -->
+        <div class="card">
+          <div class="card-title-row">
+            <h3>🔬 Kính Hiển Vi Soi Ký Tự Ma &amp; Giải Mã</h3>
+            <button id="btn-zw-paste-clear" class="btn-ghost small">Xóa trắng</button>
+          </div>
+
+          <label class="field-label">Dán bất kỳ tin nhắn / đoạn văn bản nghi vấn nào vào đây để soi:</label>
+          <textarea id="zw-decode-input" rows="4" class="textarea" placeholder="Dán câu văn nhìn bình thường nhưng nghi có giấu mật thư hoặc rò rỉ nội bộ..."></textarea>
+
+          <div class="row-2 align-end">
+            <div>
+              <label class="field-label">Mật khẩu giải mã AES-256-GCM (Nếu có khóa)</label>
+              <input id="zw-pass-dec" type="password" class="input" placeholder="Nhập mật khẩu nếu tin bị khóa..." />
+            </div>
+            <button id="btn-zw-decode" class="btn-primary cyan">🔍 Soi X-Quang &amp; Giải Mã Ngay</button>
+          </div>
+
+          <!-- Đồng hồ đối chiếu độ dài -->
+          <div id="zw-telemetry" class="stat-strip">
+            <div class="stat-cell">
+              <span class="stat-lbl">Mắt thường thấy</span>
+              <b id="zw-stat-vis">0 ký tự</b>
+            </div>
+            <div class="stat-cell">
+              <span class="stat-lbl">Hạt mực vô hình</span>
+              <b id="zw-stat-inv" class="text-cyan">0 codepoints</b>
+            </div>
+            <div class="stat-cell">
+              <span class="stat-lbl">Chế độ phát hiện</span>
+              <b id="zw-stat-mode">—</b>
+            </div>
+          </div>
+
+          <!-- Hộp cảnh báo Canary nếu phát hiện kẻ rò rỉ -->
+          <div id="zw-canary-alert" class="canary-hit-banner hidden"></div>
+
+          <!-- Kết quả giải mã -->
+          <div id="zw-decoded-box" class="secret-reveal-box">
+            <div class="secret-reveal-hdr">NỘI DUNG BÍ MẬT BÊN TRONG:</div>
+            <pre id="zw-decoded-text" class="secret-pre">Chưa có dữ liệu quét. Hãy bấm "Demo 1-Chạm" ở góc trên hoặc dán văn bản vào ô trên!</pre>
+          </div>
+
+          <!-- Kính hiển vi từng codepoint -->
+          <div class="field-label" style="margin-top:14px;">Kính hiển vi cấu trúc chuỗi (Chữ trắng = Hiển thị · Viên sáng màu = Byte tàng hình):</div>
+          <div id="zw-microscope" class="microscope-view">
+            <span class="dim-hint">Các hạt Unicode ẩn sẽ phát sáng tại đúng vị trí chúng ẩn nấp...</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- TRẠM 02: AUDIO SPECTROGRAM SYNTHESIZER & WATERFALL SCANNER         -->
+    <!-- ================================================================== -->
+    <section id="tab-audio" class="studio-panel">
+      <div class="studio-banner">
+        <div>
+          <h2>Trạm 02 — Vẽ Tranh, Chữ Mật &amp; Mã QR Giữa Sóng Âm (.WAV Spectrogram)</h2>
+          <p>Biến chữ mật, hình vẽ tay hoặc ảnh/QR tải lên thành sóng âm <b>16-bit PCM .WAV</b> bằng dàn dao động liên tục pha. Phát ra loa nghe như tiếng tín hiệu vũ trụ Sci-Fi, nhưng đưa vào máy soi phổ tần số là <b>hình ảnh hiện lên sắc nét</b>!</p>
+        </div>
+        <button id="btn-audio-quick-demo" class="btn-accent-outline">⚡ Tạo &amp; Phát Thử Ngay</button>
+      </div>
+
+      <div class="grid-two">
+        <!-- CỘT TRÁI: CANVAS THIẾT KẾ HÌNH ẢNH ÂM THANH -->
+        <div class="card">
+          <div class="card-title-row">
+            <h3>🎨 Bảng Vẽ Tần Số (Trục Dọc = Tần Số Hz · Trục Ngang = Thời Gian)</h3>
+          </div>
+
+          <div class="preset-bar">
+            <button class="chip-btn active" data-apreset="cyber-eye">👁️ Mắt Thần Cyber</button>
+            <button class="chip-btn" data-apreset="qr-beacon">📱 Mã QR Beacon</button>
+            <button class="chip-btn" data-apreset="text-banner">🔑 Khung Mật Lệnh</button>
+            <button class="chip-btn" data-apreset="skull-radar">💀 Hộp Sọ Aphex</button>
+            <button id="btn-canvas-clear" class="chip-btn danger">🗑️ Xóa Bảng</button>
+          </div>
+
+          <div class="row-2" style="margin-bottom:10px;">
+            <div style="display:flex;gap:6px;">
+              <input id="audio-text-input" type="text" class="input" value="SOS 4165" placeholder="Nhập chữ muốn in lên sóng âm..." />
+              <button id="btn-stamp-text" class="btn-secondary nowrap">In Chữ</button>
+            </div>
+            <div style="display:flex;gap:6px;align-items:center;">
+              <label class="btn-secondary file-label">
+                🖼️ Tải Ảnh / QR Lên
+                <input id="audio-img-upload" type="file" accept="image/*" hidden />
+              </label>
+              <label class="chk-inline" title="Đảo sáng tối khi tải mã QR nền trắng">
+                <input id="audio-img-invert" type="checkbox" /> Đảo màu QR
+              </label>
+            </div>
+          </div>
+
+          <div class="canvas-stage">
+            <canvas id="paint-canvas" width="360" height="144"></canvas>
+            <div class="canvas-hint">💡 Giữ chuột trái để vẽ thêm nét sáng lên sóng âm • Chuột phải (hoặc giữ Shift) để tẩy</div>
+          </div>
+
+          <div class="row-3" style="margin-top:12px;">
+            <div>
+              <label class="field-label">Dải tần số phát sóng</label>
+              <select id="audio-band" class="select">
+                <option value="scifi">Sci-Fi Rõ Nét (700 Hz – 9.5 kHz)</option>
+                <option value="wide">Siêu Chi Tiết (500 Hz – 14 kHz)</option>
+                <option value="stealth">Cận Siêu Âm Khó Nghe (13 kHz – 19.5 kHz)</option>
+              </select>
+            </div>
+            <div>
+              <label class="field-label">Thời lượng (.WAV)</label>
+              <select id="audio-duration" class="select">
+                <option value="3.5">3.5 giây (Nhanh)</option>
+                <option value="4.5" selected>4.5 giây (Chuẩn)</option>
+                <option value="6.5">6.5 giây (Rộng nét)</option>
+              </select>
+            </div>
+            <div>
+              <label class="field-label">Ngụy trang âm thanh</label>
+              <label class="chk-box">
+                <input id="audio-cloak" type="checkbox" checked />
+                <span>Gió vũ trụ Sci-Fi</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="btn-row">
+            <button id="btn-synth-wav" class="btn-primary">🔊 Tổng Hợp .WAV &amp; Phát Soi Phổ Trực Tiếp</button>
+            <button id="btn-download-wav" class="btn-secondary" disabled>⬇️ Tải File .WAV</button>
+          </div>
+          <audio id="wav-player" controls class="audio-bar hidden"></audio>
+        </div>
+
+        <!-- CỘT PHẢI: MÁY SOI PHỔ SPECTROGRAM REALTIME & OFFLINE FFT -->
+        <div class="card">
+          <div class="card-title-row">
+            <h3>📡 Máy Soi Phổ Tần Số (Spectrogram Waterfall &amp; Micro Air-Gap)</h3>
+            <select id="spec-palette" class="select small-select">
+              <option value="magma">Bảng màu: Cyber Magma</option>
+              <option value="phosphor">Bảng màu: Radar Lục Quang</option>
+              <option value="cyan">Bảng màu: Băng Tuyết Cyan</option>
+            </select>
+          </div>
+
+          <div class="spec-toolbar">
+            <button id="btn-spec-replay" class="btn-secondary small" disabled>▶️ Phát &amp; Quét Lại</button>
+            <label class="btn-secondary small file-label">
+              ⚡ Quét Nhanh File .WAV Bất Kỳ (0.2s)
+              <input id="wav-upload-scan" type="file" accept=".wav,audio/wav" hidden />
+            </label>
+            <button id="btn-mic-toggle" class="btn-accent-outline small">🎙️ Bật Micro Thu Sóng Ngoài Đời</button>
+          </div>
+
+          <div class="spectrogram-wrap">
+            <div class="freq-axis" id="spec-freq-axis">
+              <span>16k</span>
+              <span>12k</span>
+              <span>8k</span>
+              <span>4k</span>
+              <span>0.5k</span>
+            </div>
+            <canvas id="spec-canvas" width="540" height="256"></canvas>
+          </div>
+
+          <div id="spec-status" class="mono-status">
+            Trạng thái: Sẵn sàng. Bấm "Tổng Hợp .WAV &amp; Phát Soi Phổ Trực Tiếp" để xem hình ảnh hiện ra từ âm thanh!
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- TRẠM 03: CHAMELEON TRIPLE POLYGLOT FORGE (.PNG + .HTML + .ZIP)     -->
+    <!-- ================================================================== -->
+    <section id="tab-polyglot" class="studio-panel">
+      <div class="studio-banner">
+        <div>
+          <h2>Trạm 03 — Lò Đúc File Đa Nhân Cách (1 File = .PNG + .HTML + .ZIP)</h2>
+          <p>Đúc ra một tệp duy nhất hoạt động hợp lệ ở <b>cả 3 định dạng</b>: Để đuôi <code>.png</code> mở lên là bức ảnh nét căng; đổi đuôi thành <code>.html</code> biến thành Két Sắt Web khóa mật khẩu 256-bit; đổi đuôi thành <code>.zip</code> giải nén ra kho tài liệu mật chuẩn CRC-32!</p>
+        </div>
+        <button id="btn-poly-quick-demo" class="btn-accent-outline">⚡ Đúc Thử File 3 Nhân Cách</button>
+      </div>
+
+      <div class="grid-two">
+        <!-- CỘT TRÁI: CẤU HÌNH 3 NHÂN CÁCH -->
+        <div class="card">
+          <h3>🎭 Cấu Hình 3 Nhân Cách Cho Tệp</h3>
+
+          <!-- Nhân cách 1: PNG -->
+          <div class="persona-block">
+            <div class="persona-hdr">
+              <span class="persona-tag png">NHÂN CÁCH 1 • .PNG</span>
+              <b>Lớp vỏ Hình ảnh Hợp lệ (Mở bằng Windows Photos / Browser / Zalo)</b>
+            </div>
+            <div class="row-2">
+              <div>
+                <label class="field-label">Mẫu ảnh ngụy trang tự sinh</label>
+                <select id="poly-theme" class="select">
+                  <option value="finance-chart">📊 Biểu Đồ Doanh Thu Quý 4 (Ngụy trang công sở)</option>
+                  <option value="cyber-card">🛡️ Thẻ Biểu Tượng SpectraVeil Cyber</option>
+                  <option value="abstract-prism">🌈 Sóng Quang Phổ Lăng Kính</option>
+                </select>
+              </div>
+              <div>
+                <label class="field-label">Hoặc tải ảnh .PNG thật của bạn</label>
+                <label class="btn-secondary file-label full-w">
+                  🖼️ Chọn ảnh .PNG riêng (Tùy chọn)
+                  <input id="poly-custom-png" type="file" accept="image/png" hidden />
+                </label>
+              </div>
+            </div>
+            <div id="poly-custom-png-name" class="mono-dim" style="margin-top:4px;">Đang dùng mẫu ảnh tự sinh độ nét cao 480x300.</div>
+          </div>
+
+          <!-- Nhân cách 2: HTML5 Vault -->
+          <div class="persona-block">
+            <div class="persona-hdr">
+              <span class="persona-tag html">NHÂN CÁCH 2 • .HTML</span>
+              <label class="chk-inline"><input id="poly-enable-html" type="checkbox" checked /> <b>Nhúng Két Sắt Web Bí Mật (Chạy khi đổi đuôi sang .html)</b></label>
+            </div>
+            <div class="row-2">
+              <div>
+                <label class="field-label">Tiêu đề Két Sắt HTML</label>
+                <input id="poly-vault-title" type="text" class="input" value="HỒ SƠ MẬT DỰ ÁN BLACK-SWAN" />
+              </div>
+              <div>
+                <label class="field-label">Mật khẩu khóa Két .HTML (256-bit Offline)</label>
+                <input id="poly-vault-pass" type="password" class="input" placeholder="VD: 4165 (Trống = Mở thẳng)" value="4165" />
+              </div>
+            </div>
+            <label class="field-label">Thông điệp mật hiển thị khi mở khóa Két .HTML</label>
+            <textarea id="poly-secret-note" rows="3" class="textarea mono">TỌA ĐỘ KHO DỰ PHÒNG: Tầng B3 - Tủ Rack #14
+MÃ MỞ KHÓA CỨNG: 8829-DELTA-99
+(Đổi đuôi file này sang .ZIP để lấy toàn bộ tệp cấu hình đính kèm!)</textarea>
+          </div>
+
+          <!-- Nhân cách 3: ZIP Archive -->
+          <div class="persona-block">
+            <div class="persona-hdr">
+              <span class="persona-tag zip">NHÂN CÁCH 3 • .ZIP</span>
+              <label class="chk-inline"><input id="poly-enable-zip" type="checkbox" checked /> <b>Nhúng Kho Nén .ZIP Chuẩn Offset (Mở bằng Explorer / 7-Zip)</b></label>
+            </div>
+
+            <div id="poly-zip-list" class="zip-builder-list"></div>
+            <div class="btn-row compact">
+              <button id="btn-poly-add-file" class="btn-ghost small">➕ Thêm tệp văn bản mật vào .ZIP</button>
+              <label class="btn-ghost small file-label">
+                📎 Đính kèm file bất kỳ từ máy vào .ZIP
+                <input id="poly-zip-upload" type="file" hidden />
+              </label>
+            </div>
+          </div>
+
+          <div class="btn-row">
+            <button id="btn-forge-polyglot" class="btn-primary amber">🧬 Đúc File Đa Nhân Cách Ngay</button>
+          </div>
+        </div>
+
+        <!-- CỘT PHẢI: KẾT QUẢ ĐÚC & TRẢI NGHIỆM TRỰC TIẾP -->
+        <div class="card">
+          <h3>🧪 Kiểm Chứng Thực Tế File Đa Nhân Cách</h3>
+
+          <div id="poly-empty-state" class="empty-box">
+            Bấm <b>"🧬 Đúc File Đa Nhân Cách Ngay"</b> để rèn file và xem bản đồ giải phẫu 3 vùng byte!
+          </div>
+
+          <div id="poly-result-pane" class="hidden">
+            <div class="field-label">1. Trình duyệt đang đọc chính luồng byte đó như một bức ảnh <code>.PNG</code> chuẩn:</div>
+            <div class="poly-img-frame">
+              <img id="poly-preview-img" alt="Polyglot PNG Preview" />
+            </div>
+
+            <div class="field-label" style="margin-top:14px;">2. Bản đồ giải phẫu mặt cắt nhị phân của tệp vừa đúc:</div>
+            <div id="poly-anatomy-bar" class="anatomy-bar"></div>
+            <div id="poly-anatomy-legend" class="anatomy-legend"></div>
+
+            <div class="trick-guide-box">
+              <b>🎯 Cách biểu diễn "Trick" này cho bạn bè xem:</b>
+              <ol>
+                <li>Tải file <code>spectraveil-polyglot.png</code> về Desktop ➔ Mở lên là ảnh <b>.PNG</b> hoàn toàn bình thường.</li>
+                <li>Đổi tên thành <code>spectraveil-polyglot.html</code> ➔ Nhấp đúp mở ra <b>Két Sắt Web</b> đòi mật khẩu (mặc định: <code>4165</code>).</li>
+                <li>Đổi tên thành <code>spectraveil-polyglot.zip</code> ➔ Giải nén bằng Windows Explorer / 7-Zip lấy trọn bộ file mật!</li>
+              </ol>
+            </div>
+
+            <div class="btn-row wrap">
+              <button id="btn-poly-dl-png" class="btn-primary">🖼️ Tải Về (.PNG Đa Nhân Cách)</button>
+              <button id="btn-poly-open-html" class="btn-secondary">🌐 Mở Thử Nhân Cách .HTML</button>
+              <button id="btn-poly-dl-zip" class="btn-secondary">📦 Tải Bản Đuôi .ZIP</button>
+              <button id="btn-poly-to-xray" class="btn-ghost">🔬 Đưa Sang Máy X-Quang ➔</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- TRẠM 04: PIXEL LSB BIT-PLANE SLICER & BINARY X-RAY FORENSICS       -->
+    <!-- ================================================================== -->
+    <section id="tab-xray" class="studio-panel">
+      <div class="studio-banner">
+        <div>
+          <h2>Trạm 04 — Giấu Tin Pixel LSB, Cắt Lớp Bit-Plane (0..7) &amp; X-Quang Pháp Y</h2>
+          <p>Giấu thông điệp mã hóa AES-256-GCM vào bit thấp nhất của điểm ảnh RGB (<b>PSNR &gt; 51 dB</b> mắt người bất lực), lột trần ảnh khả nghi bằng mặt cắt 8 tầng Bit-Plane và mổ xẻ cấu trúc mọi file Polyglot.</p>
+        </div>
+      </div>
+
+      <div class="grid-two">
+        <!-- CỘT TRÁI: PNG PIXEL LSB + BIT-PLANE SLICER -->
+        <div class="card">
+          <h3>🖼️ Giấu Tin Hạt Điểm Ảnh (PNG LSB) &amp; Mặt Cắt Bit-Plane</h3>
+
+          <div class="row-2">
+            <div>
+              <label class="field-label">Ảnh gốc .PNG (Trống = Ảnh mẫu)</label>
+              <label class="btn-secondary file-label full-w">
+                📂 Tải ảnh .PNG để giấu/soi Bit
+                <input id="lsb-file-input" type="file" accept="image/png" hidden />
+              </label>
+            </div>
+            <div>
+              <label class="field-label">Mật khẩu khóa/mở LSB (Tùy chọn)</label>
+              <input id="lsb-password" type="password" class="input" placeholder="AES-256-GCM passphrase" />
+            </div>
+          </div>
+
+          <label class="field-label">Thông điệp mật cần nhúng vào kênh Bit-0 RGB:</label>
+          <textarea id="lsb-secret" rows="2" class="textarea mono">SHADOW_KEY=0x99F4A2B1 // Giấu trong lớp nhiễu hạt LSB Bit-0!</textarea>
+
+          <div class="btn-row compact">
+            <button id="btn-lsb-embed" class="btn-primary">💉 Nhúng Vào Ảnh .PNG</button>
+            <button id="btn-lsb-extract" class="btn-secondary">🔓 Trích Xuất Tin LSB Từ Ảnh</button>
+            <button id="btn-lsb-download" class="btn-ghost" disabled>⬇️ Tải Ảnh Stego .PNG</button>
+          </div>
+
+          <div id="lsb-status" class="mono-status">Chưa nhúng. Hãy bấm "💉 Nhúng Vào Ảnh .PNG" để đo chỉ số PSNR và soi lớp Bit-0!</div>
+
+          <div class="field-label" style="margin-top:12px;">Bộ cắt lớp quang học Bit-Plane (Bấm Bit 0 để thấy vệt dữ liệu ẩn trên góc trên cùng!):</div>
+          <div class="bitplane-bar" id="bitplane-btns">
+            <button class="bp-btn active" data-plane="rgb">Ảnh Gốc</button>
+            <button class="bp-btn" data-plane="7">Bit 7 (MSB)</button>
+            <button class="bp-btn" data-plane="5">Bit 5</button>
+            <button class="bp-btn" data-plane="3">Bit 3</button>
+            <button class="bp-btn" data-plane="1">Bit 1</button>
+            <button class="bp-btn highlight" data-plane="0">Bit 0 (LSB!)</button>
+          </div>
+          <div class="canvas-stage">
+            <canvas id="bitplane-canvas" width="480" height="270"></canvas>
+          </div>
+        </div>
+
+        <!-- CỘT PHẢI: UNIVERSAL BINARY X-RAY -->
+        <div class="card">
+          <h3>☢️ Máy Chụp X-Quang Giải Phẫu Nhị Phân Đa Nhân Cách</h3>
+          <p class="dim-text">Thả bất kỳ file <code>.png</code>, <code>.wav</code>, <code>.zip</code>, <code>.html</code> hoặc file Polyglot vào đây để quét chữ ký ngầm, đo độ hỗn loạn Entropy và bóc tách các tệp ẩn nằm sau <code>IEND</code>.</p>
+
+          <div class="row-2 align-end">
+            <label class="btn-primary cyan file-label full-w" style="justify-content:center;">
+              📂 Chọn Tệp Bất Kỳ Để Chụp X-Quang Byte
+              <input id="xray-file-input" type="file" hidden />
+            </label>
+            <input id="xray-pass" type="password" class="input" placeholder="Mật khẩu LSB (nếu có)" />
+          </div>
+
+          <div id="xray-report" class="xray-report-box">
+            <div class="empty-box">Chưa có tệp quét. Bạn có thể đúc file ở Trạm 03 rồi bấm <b>"🔬 Đưa Sang Máy X-Quang"</b>!</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+  <script src="/app.js"></script>
+</body>
+</html>
